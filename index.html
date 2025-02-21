@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Practice</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        .problem { font-size: 24px; margin: 20px; }
+        input { font-size: 18px; padding: 5px; }
+        button { font-size: 18px; padding: 5px 10px; }
+        #feedback { margin-top: 10px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Math Practice</h1>
+    <div class="problem" id="problem"></div>
+    <input type="number" id="answer" placeholder="Your answer">
+    <button onclick="checkAnswer()">Submit</button>
+    <div id="feedback"></div>
+
+    <script>
+        let num1, num2, operator, correctAnswer;
+
+        function generateProblem() {
+            num1 = Math.floor(Math.random() * 99) + 1;
+            num2 = Math.floor(Math.random() * 99) + 1;
+            operator = Math.random() < 0.5 ? '+' : '-';
+            if (operator === '-' && num2 > num1) {
+                [num1, num2] = [num2, num1]; // Ensure non-negative results
+            }
+            correctAnswer = operator === '+' ? num1 + num2 : num1 - num2;
+            document.getElementById("problem").innerText = `${num1} ${operator} ${num2} = ?`;
+            document.getElementById("answer").value = "";
+            document.getElementById("feedback").innerText = "";
+        }
+
+        function checkAnswer() {
+            let userAnswer = parseInt(document.getElementById("answer").value, 10);
+            if (userAnswer === correctAnswer) {
+                document.getElementById("feedback").innerText = "Correct! 🎉";
+                setTimeout(generateProblem, 1000); // Move to next problem after 1 second
+            } else {
+                document.getElementById("feedback").innerText = "Wrong, try again! ❌";
+            }
+        }
+
+        generateProblem(); // Start with first problem
+    </script>
+</body>
+</html>
