@@ -23,8 +23,8 @@
         let num1, num2, operator, correctAnswer;
 
         function generateProblem() {
-            num1 = Math.floor(Math.random() * 99) + 1;
-            num2 = Math.floor(Math.random() * 99) + 1;
+            num1 = Math.floor(Math.random() * 20) + 1;
+            num2 = Math.floor(Math.random() * 20) + 1;
             operator = Math.random() < 0.5 ? '+' : '-';
             if (operator === '-' && num2 > num1) {
                 [num1, num2] = [num2, num1]; // Ensure non-negative results
